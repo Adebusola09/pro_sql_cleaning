@@ -1,0 +1,85 @@
+Describe salary_data_r ;
+select * from salary_data_r sdr where yoe is null /* 3 rows*/ 
+Delete from salary_data_r where yoe is null /* 3 rows*/
+select * from salary_data_r sdr where gender is null /* 3 rows*/ 
+Alter table salary_data_r 
+modify COLUMN yoe int(2)  NOT NULL 
+
+Alter table salary_data_r 
+modify COLUMN Gender varchar(50)  NOT null
+
+Alter table salary_data_r 
+modify COLUMN education_level varchar(50)  NOT null
+
+select * from salary_data_r sdr where education_level  is null
+
+Delete from salary_data_r where education_level  is null   /*1 row*/
+
+Alter table salary_data_r 
+modify COLUMN job_title varchar(50)  NOT null
+
+Alter table salary_data_r 
+modify COLUMN age int(2)  NOT null
+
+select * from salary_data_r sdr where Age  is null
+
+Delete from salary_data_r where age  is null
+
+select * from salary_data_r sdr where salary  is null
+
+Delete from salary_data_r where salary  is null    /*2 rows*/
+
+Alter table salary_data_r 
+modify COLUMN salary float(50)  NOT null
+
+select education_level, job_title from salary_data_r ;
+select * from salary_data_r sdr ;
+select count(*) from salary_data_r;
+
+select count(education_level),education_level  
+from salary_data_r  group by education_level ; 
+
+select max(salary) maximum_salary ,round(avg(salary),2)  Average,job_title 
+from salary_data_r group by job_title order by maximum_salary ;
+
+select  max(salary) Maximum_Salary ,round(avg(salary),2),education_level
+from salary_data_r group by education_level
+
+select  max(salary) Maximum_salary ,round(avg(salary),2),Gender 
+from salary_data_r group by Gender order by maximum_salary desc ;
+
+
+select  max(yoe),avg(yoe),education_level 
+from salary_data_r group by education_level order by education_level  
+
+select  max(yoe),round(avg(yoe),2),job_title  from salary_data_r group by job_title order by job_title  
+
+select  max(yoe)Maximum_yoe,round(avg(yoe),2)Average_yoe,job_title  
+from salary_data_r group by job_title order by job_title
+
+select  max(yoe)Maximum_yoe,round(avg(yoe),2)Average_yoe,job_title  
+from salary_data_r group by job_title having Maximum_yoe=Average_yoe
+
+select count(age),age from salary_data_r sdr2 group by age order by Age 
+
+select max(age),round(avg(age)),education_level  
+from salary_data_r sdr group by education_level order by education_level 
+
+/*salary*/
+select  max(salary)Maximum_salary,round(avg(salary),2),education_level 
+from salary_data_r group by education_level order by Maximum_salary 
+
+select  max(Salary)Maximum_salary,round(avg(Salary),2),job_title  
+from salary_data_r group by job_title order by Maximum_salary 
+
+select  max(Salary) Maximum_salary,round(avg(Salary),2),yoe 
+from salary_data_r group by yoe order by maximum_salary desc
+
+select age,education_level,
+CASE 
+when age <=30 then "young"
+when age <=40 then "MidAdult"
+when age <=50 then "Adult"
+when age <=60 then "Old"
+else "Very_Old"
+end as tt from salary_data_r sdr group by age  order by age desc
